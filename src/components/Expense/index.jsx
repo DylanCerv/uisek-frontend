@@ -7,6 +7,7 @@ import { deleteExpenseAPI, getAllCategories, getAllExpenses, totalExpenseAPI } f
 import { useAuthContext } from '../../context/authContex';
 import { useLocation } from 'react-router-dom';
 import ButtonNavigate from '../common/navbar/ButtonNavigate';
+import ExpensesPieChart from './ExpensesPieChart/ExpensesPieChart';
 
 
 
@@ -26,6 +27,7 @@ export default function ExpenseManager() {
 
     const { jwt } = useAuthContext();
     const location = useLocation();
+
     const [expenses, setExpenses] = useState([]);
     const [categories, setCategories] = useState([]);
     const [totalExpense, setTotalExpense] = useState({
@@ -69,6 +71,7 @@ export default function ExpenseManager() {
     const openPopup = () => {
       setIsOpen(true);
     };
+
     const closePopup = () => {
       setIsOpen(false);
     };
@@ -166,12 +169,18 @@ export default function ExpenseManager() {
       setAppliedFilters(filters);
     };
 
+
     useEffect(() => {
       applyUrlFilters();
-      fetchCategories();
-      fetchExpenses(); // Carga los gastos al montar el componente
-    }, [location]); // Escucha cambios en los filtros aplicados
+    }, [location.search]);
 
+    useEffect(() => {
+        fetchCategories();
+    }, []);
+
+    useEffect(() => {
+        fetchExpenses();
+    }, [appliedFilters]);
 
     return (
       <FiltersContainer
@@ -197,8 +206,8 @@ export default function ExpenseManager() {
         <Popup isOpen={isOpen} onClose={closePopup}>
           <ExpenseForm onSave={saveExpense} editingExpense={editingExpense} />
         </Popup>
-        
-        <div className='bg-primary/80 p-4 rounded-md mb-10'>
+
+        <div className='bg-cyan-800 shadow-lg p-4 rounded-md mb-10'>
           <div className='text-white mb-4'>
             <p>Total Mensual: <span>${totalExpense.month}</span></p>
             <p>Total Categoria: <span>${totalExpense.category}</span></p>
@@ -232,9 +241,11 @@ export default function ExpenseManager() {
               ))}
             </select>
 
-            <button type="submit" className='bg-blue-400 px-10 py-2 rounded-full'>Obtener Valores</button>
+            <button type="submit" className='bg-slate-400 shadow-md px-10 py-2 rounded-full'>Obtener Valores</button>
           </form>
         </div>
+
+        <ExpensesPieChart />
 
         <ExpenseList expenses={expenses} onEdit={editExpense} onDelete={deleteExpense} />
       </FiltersContainer>

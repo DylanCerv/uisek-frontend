@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import UserForm from './UserForm/UserForm';
 import UserList from './UserList/UserList';
 import Popup from '../common/modal/popup';
@@ -112,12 +111,18 @@ export default function UserManager() {
     const applyFilters = (filters) => {
       setAppliedFilters(filters);
     };
-
+    
     useEffect(() => {
       applyUrlFilters();
+    }, [location.search]);
+
+    useEffect(() => {
       fetchRoles();
-      fetchUsers(); 
-    }, [location]);
+    }, []);
+
+    useEffect(() => {
+      fetchUsers();
+    }, [appliedFilters]);
   
     return (
         <FiltersContainer

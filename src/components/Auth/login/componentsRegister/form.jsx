@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { FaGooglePlusG, FaFacebookF, FaLinkedinIn } from 'react-icons/fa';
-import { useAuthContext } from '../../../../../context/authContex';
-import { postLogin } from '../../../../../services/api';
+import { useAuthContext } from '../../../../context/authContex';
+import { postLogin } from '../../../../services/api';
 // import { getEnterprice } from '../../../services/api';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { Loader } from '../../../../common/loader/loader';
+import { Loader } from '../../../common/loader/loader';
 
 function Formulario() {
   // CONTEXTO LOGIN

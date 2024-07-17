@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { useAuthContext } from '../../../../../context/authContex';
-import { postRegister} from '../../../../../services/api';
+import { useAuthContext } from '../../../../context/authContex';
+import { postRegister} from '../../../../services/api';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { Loader } from '../../../../common/loader/loader';
+import { Loader } from '../../../common/loader/loader';
 
 
 function Formulario() {

@@ -1,7 +1,6 @@
 import React from 'react';
-// import imgregister from '../../../assets/register/mujer.svg';
-import imgregister from '../../../../../assets/registerMujer.png'
 import Formulario from './form';
+
 const RegisterForm = () => {
 
 
@@ -15,7 +14,7 @@ const RegisterForm = () => {
                         <h2 className='text-5xl text-secondary font-bold mt-1 ml-3'>Tu sonrisa</h2>
                     </div>
 
-                    <img src={imgregister} alt='Image' className="absolute transform bottom-0 l:translate-x-[-15%] z-10 hidden md:block" />
+                    <img src={''} alt='Image' className="absolute transform bottom-0 l:translate-x-[-15%] z-10 hidden md:block" />
 
                 </div>
                 {/* <img src={line} alt='Image' className="h-[700px] absolute transform translate-x-16" /> */}
